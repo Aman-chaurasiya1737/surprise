@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Kanishka! 🌷 Sketchy Tulip Bouquet</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for 2D Sketchbook & Hand-Lettered Vibe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --paper-bg: #fbf6ec;
+            --paper-grid: rgba(180, 160, 135, 0.18);
+            --ink-dark: #2b2523;
+            --ink-soft: #524741;
+            --kraft-paper: #dfbe99;
+            --kraft-dark: #c69f74;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--paper-bg);
+            color: var(--ink-dark);
+            font-family: 'Patrick Hand', cursive, sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            /* Sketchbook dot & grid paper texture */
+            background-image: 
+                radial-gradient(rgba(139, 115, 85, 0.16) 1px, transparent 0),
+                linear-gradient(to right, rgba(180, 160, 135, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(180, 160, 135, 0.1) 1px, transparent 1px);
+            background-size: 24px 24px, 48px 48px, 48px 48px;
+        }
+
+        /* Subtle paper grain overlay */
+        .paper-grain {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 40;
+            opacity: 0.35;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.18'/%3E%3C/svg%3E");
+        }
+
+        .font-caveat {
+            font-family: 'Caveat', cursive;
+        }
+
+        .font-architect {
+            font-family: 'Architects Daughter', cursive;
+        }
+
+        .font-patrick {
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        /* Hand-drawn sketchy border box */
+        .sketch-box {
+            background: #fffdf8;
+            border: 2.5px solid var(--ink-dark);
+            border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+            box-shadow: 4px 5px 0px rgba(43, 37, 35, 0.88);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+        }
+
+        .sketch-btn {
+            background: #fffdf8;
+            border: 2.5px solid var(--ink-dark);
+            border-radius: 18px 225px 15px 255px / 255px 15px 225px 18px;
+            box-shadow: 3px 4px 0px var(--ink-dark);
+            transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .sketch-btn:hover {
+            transform: translate(-1px, -2px) rotate(-1deg);
+            box-shadow: 5px 6px 0px var(--ink-dark);
+        }
+
+        .sketch-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--ink-dark);
+        }
+
+        /* Masking tape strips on corners */
+        .washi-tape {
+            background: rgba(253, 224, 141, 0.72);
+            border-left: 2px dashed rgba(160, 130, 70, 0.35);
+            border-right: 2px dashed rgba(160, 130, 70, 0.35);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        /* Interactive Tulip Hover & Pop Animations */
+        .tulip-item {
+            cursor: pointer;
+            transform-origin: bottom center;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
+        }
+
+        .tulip-item:hover {
+            filter: drop-shadow(0px 6px 0px rgba(43, 37, 35, 0.22));
+        }
+
+        @keyframes tulipPop {
+            0% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.16) rotate(-5deg) translateY(-8px); }
+            60% { transform: scale(1.12) rotate(4deg) translateY(-5px); }
+            85% { transform: scale(1.04) rotate(-2deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .tulip-popping {
+            animation: tulipPop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes bouquetShake {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            20% { transform: rotate(-3.5deg) scale(1.02) translateY(-4px); }
+            40% { transform: rotate(3.5deg) scale(1.03) translateY(-6px); }
+            60% { transform: rotate(-2.5deg) scale(1.01); }
+            80% { transform: rotate(2deg) scale(1.01); }
+        }
+
+        .bouquet-shaking {
+            animation: bouquetShake 0.65s ease-in-out;
+        }
+
+        @keyframes gentleSway {
+            0%, 100% { transform: rotate(-1.2deg); }
+            50% { transform: rotate(1.2deg); }
+        }
+
+        .sway-slow {
+            animation: gentleSway 4.5s ease-in-out infinite;
+            transform-origin: 350px 580px;
+        }
+
+        /* Floating sticky note popup animation */
+        @keyframes noteFloatIn {
+            0% { opacity: 0; transform: translateY(14px) scale(0.8) rotate(-4deg); }
+            100% { opacity: 1; transform: translateY(0) scale(1) rotate(var(--rot, -2deg)); }
+        }
+
+        .sticky-popup {
+            animation: noteFloatIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* Lined Notebook Paper Effect for Card */
+        .notebook-paper {
+            background-color: #fffef9;
+            background-image: linear-gradient(#e4dccf 1px, transparent 1px);
+            background-size: 100% 30px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-between py-5 px-3 sm:px-6">
+
+    <!-- Paper Grain Texture Overlay -->
+    <div class="paper-grain"></div>
+
+    <!-- Floating Confetti & Sketch Doodles Canvas -->
+    <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-30"></canvas>
+
+    <header class="w-full max-w-3xl text-center relative z-10 mt-1">
+        <!-- Decorative Top Sketchy Tape Banner -->
+        <div class="inline-block relative px-6 py-3 sm:px-10 sm:py-4 sketch-box bg-[#fffdf7] transform -rotate-1">
+            <!-- Washi tape top left & right -->
+            <div class="washi-tape w-20 h-6 absolute -top-3 -left-4 transform -rotate-12 rounded-sm"></div>
+            <div class="washi-tape w-20 h-6 absolute -top-3 -right-4 transform rotate-12 rounded-sm"></div>
+
+            <div class="flex items-center justify-center gap-2 text-xs sm:text-sm uppercase tracking-widest text-amber-800 font-architect mb-0.5">
+                <span>✨ Level Up Day</span>
+                <span>•</span>
+                <span>2D Paper Edition</span>
+                <span>•</span>
+                <span>GGs Only ✨</span>
+            </div>
+
+            <h1 class="font-caveat text-4xl sm:text-6xl font-bold text-[#2b2523] tracking-wide leading-none">
+                Happy Birthday, Kanishka! 🌷
+            </h1>
+            <p class="text-base sm:text-lg text-[#5c4f47] mt-1 font-patrick">
+                Tap on the sketchy paper tulips below to unlock birthday notes!
+            </p>
+        </div>
+
+        <!-- Tulip Discovery Counter Pill -->
+        <div class="mt-3 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+            <div class="px-3.5 py-1 rounded-full bg-amber-100/90 border-2 border-[#2b2523] text-sm sm:text-base shadow-[2px_2px_0px_#2b2523] flex items-center gap-2">
+                <span>🌷 Tulips Inspected:</span>
+                <span id="tulip-counter" class="font-bold text-rose-600">0 / 9</span>
+            </div>
+            <div id="active-speech-pill" class="px-4 py-1 rounded-full bg-[#fffef8] border-2 border-[#2b2523] text-sm sm:text-base shadow-[2px_2px_0px_#2b2523] text-[#2b2523] transition-all duration-300">
+                💬 Click any tulip in the bouquet!
+            </div>
+        </div>
+    </header>
+
+    <main class="w-full max-w-4xl flex flex-col items-center justify-center relative z-10 my-1">
+        
+        <!-- Bouquet Interactive Stage Container -->
+        <div class="relative w-full max-w-[660px] aspect-[7/6.6] sm:aspect-[7/6.2] flex items-center justify-center">
+            
+            <!-- Floating Speech Note Container (Appears when tulips are tapped) -->
+            <div id="floating-notes-layer" class="absolute inset-0 pointer-events-none z-20 overflow-visible"></div>
+
+            <!-- Background Sketchbook Doodles (Stars, Clouds, Blocky Bricks) -->
+            <svg viewBox="0 0 700 640" class="w-full h-full overflow-visible select-none" id="bouquet-svg">
+                <defs>
+                    <!-- Hand-drawn wobbly sketchy outline filter -->
+                    <filter id="sketchy-line" x="-10%" y="-10%" width="120%" height="120%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" result="noise" seed="4" />
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.3" xChannelSelector="R" yChannelSelector="G" />
+                    </filter>
+
+                    <!-- Paper cut-out sticker shadow -->
+                    <filter id="paper-shadow" x="-15%" y="-15%" width="135%" height="135%">
+                        <feDropShadow dx="3" dy="4" stdDeviation="0.6" flood-color="#2b2523" flood-opacity="0.22" />
+                    </filter>
+
+                    <!-- Soft watercolor crayon texture inside petals -->
+                    <pattern id="diagonal-sketch" width="8" height="8" patternTransform="rotate(35 0 0)" patternUnits="userSpaceOnUse">
+                        <line x1="0" y1="0" x2="0" y2="8" stroke="#2b2523" stroke-width="0.7" stroke-opacity="0.12" />
+                    </pattern>
+
+                    <pattern id="newsprint-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <rect width="40" height="40" fill="#f3ead8"/>
+                        <line x1="4" y1="8" x2="36" y2="8" stroke="#b5a68f" stroke-width="1.5" stroke-dasharray="6 3"/>
+                        <line x1="4" y1="16" x2="32" y2="16" stroke="#b5a68f" stroke-width="1" stroke-dasharray="10 2"/>
+                        <line x1="4" y1="24" x2="36" y2="24" stroke="#b5a68f" stroke-width="1.2" stroke-dasharray="4 4"/>
+                        <line x1="4" y1="32" x2="28" y2="32" stroke="#b5a68f" stroke-width="1" stroke-dasharray="8 3"/>
+                    </pattern>
+
+                    <pattern id="grid-wrap-pattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <rect width="20" height="20" fill="#f7f2eb"/>
+                        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#93b5c6" stroke-width="1" stroke-opacity="0.45"/>
+                    </pattern>
+                </defs>
+
+                <!-- Background Decorative Sketch Doodles around Bouquet -->
+                <g filter="url(#sketchy-line)" opacity="0.85">
+                    <!-- Top Left Doodle Star & Sparkle -->
+                    <g transform="translate(85, 115) rotate(-15)">
+                        <path d="M0,-18 L5,-5 L18,-4 L8,5 L11,18 L0,10 L-11,18 L-8,5 L-18,-4 L-5,-5 Z" fill="#fde047" stroke="#2b2523" stroke-width="2.2" stroke-linejoin="round"/>
+                        <text x="-12" y="34" font-family="Architects Daughter" font-size="13" fill="#524741">+1 YR!</text>
+                    </g>
+
+                    <!-- Top Right Doodle Blocky Roblox-style Brick -->
+                    <g transform="translate(595, 120) rotate(14)" class="cursor-pointer" id="easter-egg-brick">
+                        <!-- 3D Sketchy Brick -->
+                        <polygon points="-24,-10 0,-22 24,-10 0,2" fill="#f87171" stroke="#2b2523" stroke-width="2.2" stroke-linejoin="round"/>
+                        <polygon points="-24,-10 0,2 0,18 -24,6" fill="#ef4444" stroke="#2b2523" stroke-width="2.2" stroke-linejoin="round"/>
+                        <polygon points="24,-10 0,2 0,18 24,6" fill="#dc2626" stroke="#2b2523" stroke-width="2.2" stroke-linejoin="round"/>
+                        <!-- Studs on top of brick -->
+                        <ellipse cx="-8" cy="-10" rx="4.5" ry="2.5" fill="#fca5a5" stroke="#2b2523" stroke-width="1.8"/>
+                        <ellipse cx="8" cy="-10" rx="4.5" ry="2.5" fill="#fca5a5" stroke="#2b2523" stroke-width="1.8"/>
+                        <text x="-28" y="34" font-family="Architects Daughter" font-size="12" fill="#524741">obby pro</text>
+                    </g>
+
+                    <!-- Left Floating Paper Heart/Sparkle Doodle (Friendly yellow star-burst) -->
+                    <g transform="translate(65, 290) rotate(-8)">
+                        <circle cx="0" cy="0" r="14" fill="#fed7aa" stroke="#2b2523" stroke-width="2" stroke-dasharray="4 2"/>
+                        <path d="M-6,-2 L6,-2 M0,-8 L0,4" stroke="#2b2523" stroke-width="2.2" stroke-linecap="round"/>
+                        <text x="-18" y="28" font-family="Architects Daughter" font-size="12" fill="#524741">GG EZ</text>
+                    </g>
+
+                    <!-- Right Floating Crown Doodle -->
+                    <g transform="translate(620, 275) rotate(10)">
+                        <path d="M-18,10 L-14,-10 L-4,2 L4,-12 L12,2 L20,-8 L18,10 Z" fill="#fde047" stroke="#2b2523" stroke-width="2.2" stroke-linejoin="round"/>
+                        <text x="-24" y="26" font-family="Architects Daughter" font-size="12" fill="#524741">bday VIP</text>
+                    </g>
+                </g>
+
+                <g id="main-bouquet-group" class="sway-slow">
+                    
+                    <!-- BACK LAYER OF PAPER WRAPPER CONE -->
+                    <g filter="url(#paper-shadow)">
+                        <path id="wrapper-back" d="M 145,270 Q 350,195 555,270 L 425,525 L 275,525 Z" 
+                              fill="#d2ad84" stroke="#2b2523" stroke-width="3" stroke-linejoin="round" filter="url(#sketchy-line)"/>
+                        <!-- Inner tissue paper ruffled collar -->
+                        <path d="M 155,275 Q 195,230 235,260 Q 275,215 320,250 Q 355,210 395,250 Q 440,215 480,260 Q 520,230 545,275 L 490,340 L 210,340 Z" 
+                              fill="#fffdf7" stroke="#2b2523" stroke-width="2.5" stroke-linejoin="round" filter="url(#sketchy-line)"/>
+                    </g>
+
+                    <!-- BACK FOLIAGE & EUCALYPTUS / SKETCHY LEAVES -->
+                    <g filter="url(#sketchy-line)">
+                        <!-- Left tall sword leaf -->
+                        <path d="M 270,380 Q 175,260 155,155 Q 210,215 295,355 Z" fill="#86efac" stroke="#2b2523" stroke-width="2.6"/>
+                        <path d="M 162,165 Q 225,255 280,360" fill="none" stroke="#2b2523" stroke-width="1.8" stroke-dasharray="8 4"/>
+
+                        <!-- Right tall sword leaf -->
+                        <path d="M 430,380 Q 525,255 545,150 Q 485,215 405,355 Z" fill="#4ade80" stroke="#2b2523" stroke-width="2.6"/>
+                        <path d="M 538,162 Q 475,250 418,360" fill="none" stroke="#2b2523" stroke-width="1.8" stroke-dasharray="8 4"/>
+
+                        <!-- Center-left lush leaf -->
+                        <path d="M 310,350 Q 245,200 265,95 Q 305,180 335,340 Z" fill="#6ee7b7" stroke="#2b2523" stroke-width="2.5"/>
+                        <!-- Center-right lush leaf -->
+                        <path d="M 390,350 Q 455,200 435,95 Q 395,180 365,340 Z" fill="#86efac" stroke="#2b2523" stroke-width="2.5"/>
+
+                        <!-- Baby's Breath / White Sketchy Filler Sprigs -->
+                        <g stroke="#2b2523" stroke-width="2" fill="none">
+                            <path d="M 240,280 Q 190,190 175,120"/>
+                            <path d="M 460,280 Q 510,190 525,120"/>
+                            <path d="M 350,260 L 350,70"/>
+                        </g>
+                        <!-- Little white paper circles for Baby's Breath -->
+                        <g fill="#fffdf9" stroke="#2b2523" stroke-width="2">
+                            <circle cx="175" cy="120" r="6"/><circle cx="192" cy="138" r="5"/><circle cx="168" cy="148" r="5.5"/>
+                            <circle cx="525" cy="120" r="6"/><circle cx="508" cy="138" r="5"/><circle cx="532" cy="148" r="5.5"/>
+                            <circle cx="350" cy="68" r="6.5"/><circle cx="336" cy="84" r="5"/><circle cx="364" cy="82" r="5"/>
+                        </g>
+
+                        <!-- All Tulip Green Stems -->
+                        <g stroke="#2b2523" stroke-width="3" fill="none" stroke-linecap="round">
+                            <!-- Stems with thick green inner stroke -->
+                            <path d="M 350,410 Q 350,270 350,155" stroke="#15803d" stroke-width="9"/>
+                            <path d="M 350,410 Q 350,270 350,155"/>
+
+                            <path d="M 335,410 Q 290,280 265,165" stroke="#22c55e" stroke-width="9"/>
+                            <path d="M 335,410 Q 290,280 265,165"/>
+
+                            <path d="M 365,410 Q 410,280 435,165" stroke="#16a34a" stroke-width="9"/>
+                            <path d="M 365,410 Q 410,280 435,165"/>
+
+                            <path d="M 320,410 Q 230,300 190,215" stroke="#15803d" stroke-width="8"/>
+                            <path d="M 320,410 Q 230,300 190,215"/>
+
+                            <path d="M 380,410 Q 470,300 510,215" stroke="#22c55e" stroke-width="8"/>
+                            <path d="M 380,410 Q 470,300 510,215"/>
+
+                            <path d="M 335,415 Q 275,320 235,265" stroke="#4ade80" stroke-width="8.5"/>
+                            <path d="M 335,415 Q 275,320 235,265"/>
+
+                            <path d="M 365,415 Q 425,320 465,265" stroke="#16a34a" stroke-width="8.5"/>
+                            <path d="M 365,415 Q 425,320 465,265"/>
+
+                            <path d="M 345,420 Q 315,340 305,275" stroke="#22c55e" stroke-width="8.5"/>
+                            <path d="M 345,420 Q 315,340 305,275"/>
+
+                            <path d="M 355,420 Q 385,340 395,275" stroke="#15803d" stroke-width="8.5"/>
+                            <path d="M 355,420 Q 385,340 395,275"/>
+                        </g>
+                    </g>
+
+                    <!-- ================= INTERACTIVE 2D SKETCHY TULIPS ================= -->
+                    <!-- Each tulip has a creamy paper cut-out border, offset sketchy color fill, diagonal pencil shading, and hand-drawn ink lines -->
+                    <g id="tulips-layer" filter="url(#paper-shadow)">
+
+                        <!-- TULIP 1: Top Center — Sunny Golden Yellow Tulip -->
+                        <g class="tulip-item" data-id="1" data-note="Happy Birthday Kanishka! 🎉 Hope your year is 10/10!" transform="translate(350, 130)">
+                            <g filter="url(#sketchy-line)">
+                                <!-- Paper Cutout White Backing -->
+                                <path d="M -38,10 C -44,-35 -18,-58 0,-42 C 18,-58 44,-35 38,10 C 30,36 -30,36 -38,10 Z" fill="#fffdf7" stroke="#fffdf7" stroke-width="9" stroke-linejoin="round"/>
+                                <!-- Offset Sketch Color Blob -->
+                                <path d="M -33,10 C -38,-30 -15,-50 0,-36 C 15,-50 38,-30 33,10 C 26,32 -26,32 -33,10 Z" fill="#facc15" transform="translate(3, -3)"/>
+                                <!-- Center Petal -->
+                                <path d="M -18,14 C -22,-24 0,-48 0,-48 C 0,-48 22,-24 18,14 Z" fill="#fde047" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <!-- Left Petal -->
+                                <path d="M -34,8 C -40,-28 -14,-44 -4,-20 C -2,5 -12,26 -34,8 Z" fill="#eab308" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <!-- Right Petal -->
+                                <path d="M 34,8 C 40,-28 14,-44 4,-20 C 2,5 12,26 34,8 Z" fill="#facc15" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <!-- Cup Base -->
+                                <path d="M -34,8 C -22,34 22,34 34,8 C 16,20 -16,20 -34,8 Z" fill="#f59e0b" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <!-- Sketchy Pencil Hatch Lines -->
+                                <path d="M -14,12 Q -10,-8 -6,-18 M 12,14 Q 10,-6 6,-16 M 0,18 L 0,-10" stroke="#2b2523" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+                            </g>
+                        </g>
+
+                        <!-- TULIP 2: Upper Left — Coral Peach Tulip -->
+                        <g class="tulip-item" data-id="2" data-note="Certified Tulip Enjoyer 🌷 (Best flower taste tbh)" transform="translate(260, 150) rotate(-14)">
+                            <g filter="url(#sketchy-line)">
+                                <path d="M -36,10 C -42,-32 -16,-54 0,-40 C 16,-54 42,-32 36,10 C 28,34 -28,34 -36,10 Z" fill="#fffdf7" stroke="#fffdf7" stroke-width="9" stroke-linejoin="round"/>
+                                <path d="M -32,10 C -36,-28 -14,-48 0,-35 C 14,-48 36,-28 32,10 C 25,30 -25,30 -32,10 Z" fill="#fb7185" transform="translate(-3, -2)"/>
+                                <path d="M -17,14 C -20,-22 0,-45 0,-45 C 0,-45 20,-22 17,14 Z" fill="#fda4af" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -32,8 C -38,-26 -12,-42 -3,-18 C -2,5 -10,25 -32,8 Z" fill="#f43f5e" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M 32,8 C 38,-26 12,-42 3,-18 C 2,5 10,25 32,8 Z" fill="#fb7185" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -32,8 C -20,32 20,32 32,8 C 14,18 -14,18 -32,8 Z" fill="#e11d48" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -12,10 Q -8,-10 -4,-18 M 10,12 Q 8,-6 4,-15" stroke="#2b2523" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/>
+                            </g>
+                        </g>
+
+                        <!-- TULIP 3: Upper Right — Lavender Lilac Tulip -->
+                        <g class="tulip-item" data-id="3" data-note="+1 Year Leveled Up! 🎮 New birthday stats unlocked!" transform="translate(440, 150) rotate(14)">
+                            <g filter="url(#sketchy-line)">
+                                <path d="M -36,10 C -42,-32 -16,-54 0,-40 C 16,-54 42,-32 36,10 C 28,34 -28,34 -36,10 Z" fill="#fffdf7" stroke="#fffdf7" stroke-width="9" stroke-linejoin="round"/>
+                                <path d="M -32,10 C -36,-28 -14,-48 0,-35 C 14,-48 36,-28 32,10 C 25,30 -25,30 -32,10 Z" fill="#c084fc" transform="translate(3, -2)"/>
+                                <path d="M -17,14 C -20,-22 0,-45 0,-45 C 0,-45 20,-22 17,14 Z" fill="#d8b4fe" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -32,8 C -38,-26 -12,-42 -3,-18 C -2,5 -10,25 -32,8 Z" fill="#a855f7" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M 32,8 C 38,-26 12,-42 3,-18 C 2,5 10,25 32,8 Z" fill="#c084fc" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -32,8 C -20,32 20,32 32,8 C 14,18 -14,18 -32,8 Z" fill="#9333ea" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -12,10 Q -8,-10 -4,-18 M 10,12 Q 8,-6 4,-15" stroke="#2b2523" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/>
+                            </g>
+                        </g>
+
+                        <!-- TULIP 4: Far Left — Tangerine Apricot Tulip -->
+                        <g class="tulip-item" data-id="4" data-note="Ready for the next Roblox lobby whenever you are! 🧱" transform="translate(182, 208) rotate(-25)">
+                            <g filter="url(#sketchy-line)">
+                                <path d="M -34,10 C -40,-30 -15,-50 0,-38 C 15,-50 40,-30 34,10 C 26,32 -26,32 -34,10 Z" fill="#fffdf7" stroke="#fffdf7" stroke-width="9" stroke-linejoin="round"/>
+                                <path d="M -30,10 C -35,-26 -12,-44 0,-32 C 12,-44 35,-26 30,10 C 24,28 -24,28 -30,10 Z" fill="#fb923c" transform="translate(-2, -3)"/>
+                                <path d="M -16,12 C -18,-20 0,-42 0,-42 C 0,-42 18,-20 16,12 Z" fill="#fdba74" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -30,8 C -36,-24 -10,-40 -3,-16 C -2,4 -9,24 -30,8 Z" fill="#f97316" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M 30,8 C 36,-24 10,-40 3,-16 C 2,4 9,24 30,8 Z" fill="#fb923c" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -30,8 C -18,30 18,30 30,8 C 12,16 -12,16 -30,8 Z" fill="#ea580c" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -10,10 Q -6,-8 -3,-15 M 9,10 Q 7,-5 3,-14" stroke="#2b2523" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/>
+                            </g>
+                        </g>
+
+                        <!-- TULIP 5: Far Right — Sky Pastel Blue & Cream Tulip -->
+                        <g class="tulip-item" data-id="5" data-note="Wishing you 0 ping, high FPS & legendary RNG this year! ⚡" transform="translate(518, 208) rotate(25)">
+                            <g filter="url(#sketchy-line)">
+                                <path d="M -34,10 C -40,-30 -15,-50 0,-38 C 15,-50 40,-30 34,10 C 26,32 -26,32 -34,10 Z" fill="#fffdf7" stroke="#fffdf7" stroke-width="9" stroke-linejoin="round"/>
+                                <path d="M -30,10 C -35,-26 -12,-44 0,-32 C 12,-44 35,-26 30,10 C 24,28 -24,28 -30,10 Z" fill="#38bdf8" transform="translate(3, -3)"/>
+                                <path d="M -16,12 C -18,-20 0,-42 0,-42 C 0,-42 18,-20 16,12 Z" fill="#bae6fd" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -30,8 C -36,-24 -10,-40 -3,-16 C -2,4 -9,24 -30,8 Z" fill="#38bdf8" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M 30,8 C 36,-24 10,-40 3,-16 C 2,4 9,24 30,8 Z" fill="#7dd3fc" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -30,8 C -18,30 18,30 30,8 C 12,16 -12,16 -30,8 Z" fill="#0284c7" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -10,10 Q -6,-8 -3,-15 M 9,10 Q 7,-5 3,-14" stroke="#2b2523" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/>
+                            </g>
+                        </g>
+
+                        <!-- TULIP 6: Mid Left — Bubblegum Pink Double Tulip -->
+                        <g class="tulip-item" data-id="6" data-note="Glad we met in-game! Top tier online friend fr 🤝" transform="translate(238, 248) rotate(-12)">
+                            <g filter="url(#sketchy-line)">
+                                <path d="M -38,10 C -44,-34 -18,-56 0,-42 C 18,-56 44,-34 38,10 C 30,36 -30,36 -38,10 Z" fill="#fffdf7" stroke="#fffdf7" stroke-width="9" stroke-linejoin="round"/>
+                                <path d="M -34,10 C -40,-30 -15,-50 0,-36 C 15,-50 40,-30 34,10 C 26,32 -26,32 -34,10 Z" fill="#f472b6" transform="translate(-3, -2)"/>
+                                <!-- Back ruffled petals -->
+                                <path d="M -26,-16 Q -15,-48 0,-36 Q 15,-48 26,-16 Z" fill="#fbcfe8" stroke="#2b2523" stroke-width="2.6" stroke-linejoin="round"/>
+                                <path d="M -18,14 C -22,-24 0,-46 0,-46 C 0,-46 22,-24 18,14 Z" fill="#f9a8d4" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -34,8 C -40,-28 -14,-44 -4,-20 C -2,5 -12,26 -34,8 Z" fill="#ec4899" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M 34,8 C 40,-28 14,-44 4,-20 C 2,5 12,26 34,8 Z" fill="#f472b6" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -34,8 C -22,34 22,34 34,8 C 16,20 -16,20 -34,8 Z" fill="#db2777" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -14,12 Q -10,-8 -6,-18 M 12,14 Q 10,-6 6,-16" stroke="#2b2523" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+                            </g>
+                        </g>
+
+                        <!-- TULIP 7: Mid Right — Warm Marigold Amber Tulip -->
+                        <g class="tulip-item" data-id="7" data-note="GGs only this year! Hope you eat tons of cake 🎂" transform="translate(462, 248) rotate(12)">
+                            <g filter="url(#sketchy-line)">
+                                <path d="M -38,10 C -44,-34 -18,-56 0,-42 C 18,-56 44,-34 38,10 C 30,36 -30,36 -38,10 Z" fill="#fffdf7" stroke="#fffdf7" stroke-width="9" stroke-linejoin="round"/>
+                                <path d="M -34,10 C -40,-30 -15,-50 0,-36 C 15,-50 40,-30 34,10 C 26,32 -26,32 -34,10 Z" fill="#fbbf24" transform="translate(3, -2)"/>
+                                <path d="M -26,-16 Q -15,-48 0,-36 Q 15,-48 26,-16 Z" fill="#fef08a" stroke="#2b2523" stroke-width="2.6" stroke-linejoin="round"/>
+                                <path d="M -18,14 C -22,-24 0,-46 0,-46 C 0,-46 22,-24 18,14 Z" fill="#fde68a" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -34,8 C -40,-28 -14,-44 -4,-20 C -2,5 -12,26 -34,8 Z" fill="#f59e0b" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M 34,8 C 40,-28 14,-44 4,-20 C 2,5 12,26 34,8 Z" fill="#fbbf24" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -34,8 C -22,34 22,34 34,8 C 16,20 -16,20 -34,8 Z" fill="#d97706" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -14,12 Q -10,-8 -6,-18 M 12,14 Q 10,-6 6,-16" stroke="#2b2523" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+                            </g>
+                        </g>
+
+                        <!-- TULIP 8: Front Center-Left — Cream & Strawberry Tipped Tulip -->
+                        <g class="tulip-item" data-id="8" data-note="Real tulips wilt, so here's 2D paper ones that last forever! ✏️" transform="translate(308, 232) rotate(-6)">
+                            <g filter="url(#sketchy-line)">
+                                <path d="M -38,10 C -44,-35 -18,-58 0,-42 C 18,-58 44,-35 38,10 C 30,36 -30,36 -38,10 Z" fill="#fffdf7" stroke="#fffdf7" stroke-width="9" stroke-linejoin="round"/>
+                                <path d="M -34,10 C -39,-30 -15,-50 0,-36 C 15,-50 39,-30 34,10 C 26,32 -26,32 -34,10 Z" fill="#fecdd3" transform="translate(-2, -3)"/>
+                                <path d="M -18,14 C -22,-24 0,-48 0,-48 C 0,-48 22,-24 18,14 Z" fill="#fff1f2" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -34,8 C -40,-28 -14,-44 -4,-20 C -2,5 -12,26 -34,8 Z" fill="#fda4af" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M 34,8 C 40,-28 14,-44 4,-20 C 2,5 12,26 34,8 Z" fill="#fecdd3" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -34,8 C -22,34 22,34 34,8 C 16,20 -16,20 -34,8 Z" fill="#fb7185" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -14,12 Q -10,-8 -6,-18 M 12,14 Q 10,-6 6,-16 M 0,18 L 0,-10" stroke="#2b2523" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+                            </g>
+                        </g>
+
+                        <!-- TULIP 9: Front Center-Right — Sunset Magenta & Coral Tulip -->
+                        <g class="tulip-item" data-id="9" data-note="Have the chillest, most awesome birthday ever Kanishka! 🌟" transform="translate(392, 232) rotate(6)">
+                            <g filter="url(#sketchy-line)">
+                                <path d="M -38,10 C -44,-35 -18,-58 0,-42 C 18,-58 44,-35 38,10 C 30,36 -30,36 -38,10 Z" fill="#fffdf7" stroke="#fffdf7" stroke-width="9" stroke-linejoin="round"/>
+                                <path d="M -34,10 C -39,-30 -15,-50 0,-36 C 15,-50 39,-30 34,10 C 26,32 -26,32 -34,10 Z" fill="#f43f5e" transform="translate(2, -3)"/>
+                                <path d="M -18,14 C -22,-24 0,-48 0,-48 C 0,-48 22,-24 18,14 Z" fill="#fda4af" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -34,8 C -40,-28 -14,-44 -4,-20 C -2,5 -12,26 -34,8 Z" fill="#fb7185" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M 34,8 C 40,-28 14,-44 4,-20 C 2,5 12,26 34,8 Z" fill="#f43f5e" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -34,8 C -22,34 22,34 34,8 C 16,20 -16,20 -34,8 Z" fill="#e11d48" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                                <path d="M -14,12 Q -10,-8 -6,-18 M 12,14 Q 10,-6 6,-16 M 0,18 L 0,-10" stroke="#2b2523" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+                            </g>
+                        </g>
+
+                    </g>
+
+                    <!-- FOREGROUND LEAVES DRAPING OVER WRAPPER EDGE -->
+                    <g filter="url(#sketchy-line)">
+                        <path d="M 230,295 Q 200,330 185,360 Q 225,340 255,305 Z" fill="#4ade80" stroke="#2b2523" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M 470,295 Q 500,330 515,360 Q 475,340 445,305 Z" fill="#4ade80" stroke="#2b2523" stroke-width="2.5" stroke-linejoin="round"/>
+                    </g>
+
+                    <!-- FRONT PAPER CONE WRAPPER -->
+                    <g filter="url(#paper-shadow)">
+                        <g filter="url(#sketchy-line)">
+                            <!-- Left Fold of Paper Cone -->
+                            <path id="wrapper-front-left" d="M 155,275 L 365,335 L 420,565 L 285,565 L 265,485 Z" 
+                                  fill="#e6c79c" stroke="#2b2523" stroke-width="3" stroke-linejoin="round"/>
+                            
+                            <!-- Right Overlapping Fold of Paper Cone -->
+                            <path id="wrapper-front-right" d="M 545,275 L 325,345 L 285,565 L 420,565 L 440,485 Z" 
+                                  fill="#dfbe93" stroke="#2b2523" stroke-width="3" stroke-linejoin="round"/>
+
+                            <!-- Diagonal Sketch Shading on Wrapper -->
+                            <path d="M 545,275 L 325,345 L 285,565 L 420,565 Z" fill="url(#diagonal-sketch)" pointer-events="none"/>
+
+                            <!-- Bottom Stems Peeking Out -->
+                            <g stroke="#2b2523" stroke-width="2.8" fill="#22c55e">
+                                <rect x="315" y="565" width="12" height="38" rx="4" transform="rotate(6 315 565)"/>
+                                <rect x="335" y="565" width="12" height="44" rx="4" transform="rotate(2 335 565)" fill="#16a34a"/>
+                                <rect x="355" y="565" width="12" height="42" rx="4" transform="rotate(-3 355 565)"/>
+                                <rect x="373" y="565" width="12" height="36" rx="4" transform="rotate(-7 373 565)" fill="#4ade80"/>
+                            </g>
+
+                            <!-- Crease & Sketch Lines on Paper Cone -->
+                            <path d="M 335,355 L 305,535 M 485,315 L 405,530 M 215,310 L 290,460" 
+                                  stroke="#2b2523" stroke-width="1.6" stroke-dasharray="10 6" opacity="0.45" fill="none"/>
+
+                            <!-- Cute Sticker on Wrapper Cone -->
+                            <g transform="translate(415, 395) rotate(-10)">
+                                <rect x="-34" y="-15" width="68" height="30" rx="8" fill="#fef08a" stroke="#2b2523" stroke-width="2.2"/>
+                                <text x="0" y="5" text-anchor="middle" font-family="Architects Daughter" font-weight="bold" font-size="13" fill="#2b2523">TULIP VIP</text>
+                            </g>
+
+                            <!-- TWINE WAIST BAND & DOODLED BOW -->
+                            <path d="M 254,458 Q 350,478 446,458" fill="none" stroke="#fffdf7" stroke-width="11" stroke-linecap="round"/>
+                            <path d="M 254,458 Q 350,478 446,458" fill="none" stroke="#fb7185" stroke-width="7" stroke-linecap="round"/>
+                            <path d="M 254,458 Q 350,478 446,458" fill="none" stroke="#2b2523" stroke-width="2.6" stroke-linecap="round"/>
+
+                            <!-- Bow Loops -->
+                            <path d="M 350,468 C 310,435 295,485 350,472 Z" fill="#fb7185" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                            <path d="M 350,468 C 390,435 405,485 350,472 Z" fill="#fb7185" stroke="#2b2523" stroke-width="2.8" stroke-linejoin="round"/>
+                            <!-- Bow Ribbons -->
+                            <path d="M 346,472 Q 325,510 315,525" fill="none" stroke="#fb7185" stroke-width="6" stroke-linecap="round"/>
+                            <path d="M 346,472 Q 325,510 315,525" fill="none" stroke="#2b2523" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M 354,472 Q 375,510 385,525" fill="none" stroke="#fb7185" stroke-width="6" stroke-linecap="round"/>
+                            <path d="M 354,472 Q 375,510 385,525" fill="none" stroke="#2b2523" stroke-width="2.5" stroke-linecap="round"/>
+                            <!-- Bow Knot -->
+                            <circle cx="350" cy="469" r="8" fill="#f43f5e" stroke="#2b2523" stroke-width="2.8"/>
+                        </g>
+
+                        <!-- HANGING SKETCHY PAPER GIFT TAG ON BOUQUET -->
+                        <g transform="translate(275, 472) rotate(-5)" class="cursor-pointer" id="bouquet-gift-tag">
+                            <!-- String connecting to bow -->
+                            <path d="M 75,-4 Q 40,-12 10,8" fill="none" stroke="#2b2523" stroke-width="2" stroke-dasharray="3 2"/>
+                            <!-- Gift Tag Card -->
+                            <rect x="-105" y="0" width="215" height="74" rx="8" fill="#fffdf7" stroke="#2b2523" stroke-width="2.8" filter="url(#sketchy-line)"/>
+                            <rect x="-99" y="5" width="203" height="64" rx="5" fill="none" stroke="#d97706" stroke-width="1.2" stroke-dasharray="5 4"/>
+                            <!-- Hole punch -->
+                            <circle cx="8" cy="11" r="4" fill="#e6c79c" stroke="#2b2523" stroke-width="2"/>
+                            <!-- Tag Text -->
+                            <text x="0" y="29" text-anchor="middle" font-family="Caveat" font-weight="700" font-size="22" fill="#2b2523">For: Kanishka 🌷🎂</text>
+                            <text x="0" y="48" text-anchor="middle" font-family="Patrick Hand" font-size="13.5" fill="#524741">from "a guy who usually</text>
+                            <text x="0" y="63" text-anchor="middle" font-family="Patrick Hand" font-size="13.5" fill="#524741">ask to play roblox"</text>
+                        </g>
+                    </g>
+
+                </g>
+            </svg>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-1 z-20">
+            <button id="btn-shake" class="sketch-btn px-4 py-2 sm:px-5 sm:py-2.5 bg-[#fef08a] text-[#2b2523] font-patrick text-base sm:text-lg flex items-center gap-2">
+                <span>🎉</span>
+                <span>Shake Bouquet & Confetti!</span>
+            </button>
+
+            <button id="btn-bloom-all" class="sketch-btn px-4 py-2 sm:px-5 sm:py-2.5 bg-[#fecdd3] text-[#2b2523] font-patrick text-base sm:text-lg flex items-center gap-2">
+                <span>🌷</span>
+                <span>Pop Random Tulip Note</span>
+            </button>
+
+            <button id="btn-wrap-style" class="sketch-btn px-4 py-2 sm:px-5 sm:py-2.5 bg-[#bae6fd] text-[#2b2523] font-patrick text-base sm:text-lg flex items-center gap-2">
+                <span>🗞️</span>
+                <span id="wrap-label">Paper: Kraft Sketch</span>
+            </button>
+
+            <button id="btn-color-shuffle" class="sketch-btn px-4 py-2 sm:px-5 sm:py-2.5 bg-[#e9d5ff] text-[#2b2523] font-patrick text-base sm:text-lg flex items-center gap-2">
+                <span>🎨</span>
+                <span>Remix Tulip Colors</span>
+            </button>
+        </div>
+    </main>
+
+    <footer class="w-full max-w-2xl mt-6 mb-4 relative z-10">
+        <div class="sketch-box notebook-paper p-5 sm:p-7 relative transform rotate-[0.5deg]">
+            <!-- Washi tape strips holding the note card -->
+            <div class="washi-tape w-24 h-7 absolute -top-3.5 left-6 transform -rotate-6 rounded-sm"></div>
+            <div class="washi-tape w-24 h-7 absolute -top-3.5 right-6 transform rotate-6 rounded-sm"></div>
+
+            <!-- Decorative Red Margin Line like a real notebook -->
+            <div class="hidden sm:block absolute top-0 bottom-0 left-12 w-[2px] bg-rose-300/70"></div>
+
+            <div class="sm:pl-10">
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                    <span class="font-caveat text-2xl sm:text-3xl font-bold text-[#2b2523]">
+                        Yo Kanishka! Happy Birthday! 🎉🌷
+                    </span>
+                    <span class="text-xs sm:text-sm px-2.5 py-0.5 rounded-md bg-amber-100 border border-[#2b2523] font-architect">
+                        Quest: Birthday Unlocked ✅
+                    </span>
+                </div>
+
+                <p class="text-[#3d3430] text-base sm:text-lg leading-[30px] font-patrick">
+                    Since you love tulips, I got you this 2D sketchy paper bouquet that won't ever run out of HP or wilt! Hope you have an awesome day, eat lots of good food, and have a super chill year ahead. Thanks for always being a cool online friend to hang out with in-game — wishing you zero lag and only W's this year! 🎮✨
+                </p>
+
+                <!-- Prominent Signature Section with Exact Requested Text -->
+                <div class="mt-5 pt-3 border-t-2 border-dashed border-[#cbbba8] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="inline-flex items-center gap-2 text-xs sm:text-sm text-[#6e5f56] font-architect">
+                        <span class="inline-block w-3 h-3 bg-red-400 border border-[#2b2523] transform rotate-12"></span>
+                        <span> Roblox lobby waiting whenever you're free!</span>
+                    </div>
+
+                    <div class="bg-[#fef9c3] border-2 border-[#2b2523] px-4 py-2 rounded-xl shadow-[3px_3px_0px_#2b2523] transform -rotate-1 self-start sm:self-auto">
+                        <p class="font-caveat text-xl sm:text-2xl font-bold text-[#2b2523] leading-tight">
+                            from "a guy who usually ask to play roblox"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Web Audio API Gentle Paper Pop / Pluck Sound Synthesizer ---
+        let audioCtx = null;
+        function playSketchPopSound(pitchMultiplier = 1) {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'triangle';
+                const baseFreq = 320 * pitchMultiplier;
+                osc.frequency.setValueAtTime(baseFreq, now);
+                osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.45, now + 0.09);
+
+                gain.gain.setValueAtTime(0.12, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now);
+                osc.stop(now + 0.15);
+            } catch (e) {
+                // Ignore if audio is blocked by browser autoplay policy
+            }
+        }
+
+        // --- State Tracking ---
+        const inspectedTulips = new Set();
+        const tulipElements = document.querySelectorAll('.tulip-item');
+        const counterEl = document.getElementById('tulip-counter');
+        const speechPill = document.getElementById('active-speech-pill');
+        const floatingNotesLayer = document.getElementById('floating-notes-layer');
+        const mainBouquetGroup = document.getElementById('main-bouquet-group');
+
+        // Sticky note background colors
+        const stickyColors = [
+            '#fef08a', // Yellow sticky
+            '#fecdd3', // Pink sticky
+            '#bae6fd', // Sky sticky
+            '#bbf7d0', // Mint sticky
+            '#fed7aa', // Peach sticky
+            '#e9d5ff'  // Lavender sticky
+        ];
+
+        // --- Show Floating Sticky Note Bubble Above Clicked Tulip ---
+        function triggerTulipInteraction(tulipEl, index) {
+            const id = tulipEl.getAttribute('data-id');
+            const noteText = tulipEl.getAttribute('data-note');
+
+            // Play gentle marimba/paper pluck sound
+            const pitches = [0.9, 1.0, 1.12, 1.25, 1.33, 1.5, 1.66, 1.8, 2.0];
+            playSketchPopSound(pitches[index % pitches.length]);
+
+            // Trigger bounce animation
+            tulipEl.classList.remove('tulip-popping');
+            void tulipEl.offsetWidth; // Force reflow
+            tulipEl.classList.add('tulip-popping');
+
+            // Track unique tulips clicked
+            inspectedTulips.add(id);
+            counterEl.textContent = `${inspectedTulips.size} / ${tulipElements.length}`;
+            speechPill.textContent = `🌷 ${noteText}`;
+
+            // Celebrate when all 9 tulips are discovered!
+            if (inspectedTulips.size === tulipElements.length && !window.allDiscoveredCelebrated) {
+                window.allDiscoveredCelebrated = true;
+                setTimeout(() => {
+                    burstSketchConfetti(75);
+                    speechPill.textContent = `🏆 All 9 Tulips Found! Happy Birthday Kanishka! 🎉`;
+                }, 300);
+            }
+
+            // Calculate position relative to the stage container
+            const svgRect = document.getElementById('bouquet-svg').getBoundingClientRect();
+            const tulipRect = tulipEl.getBoundingClientRect();
+
+            const centerX = ((tulipRect.left + tulipRect.width / 2) - svgRect.left) / svgRect.width * 100;
+            const topY = ((tulipRect.top) - svgRect.top) / svgRect.height * 100;
+
+            // Remove old sticky notes if more than 2 on screen
+            while (floatingNotesLayer.children.length >= 2) {
+                floatingNotesLayer.removeChild(floatingNotesLayer.firstChild);
+            }
+
+            // Create new sketchy sticky note
+            const noteDiv = document.createElement('div');
+            const bgColor = stickyColors[Math.floor(Math.random() * stickyColors.length)];
+            const rot = (Math.random() * 8 - 4).toFixed(1);
+
+            noteDiv.className = 'sticky-popup absolute px-3.5 py-2 rounded-lg border-2 border-[#2b2523] shadow-[3px_4px_0px_#2b2523] text-[#2b2523] font-patrick text-sm sm:text-base max-w-[210px] text-center pointer-events-none';
+            noteDiv.style.backgroundColor = bgColor;
+            noteDiv.style.setProperty('--rot', `${rot}deg`);
+
+            // Clamp horizontal position so it stays neatly inside viewport
+            const clampedX = Math.max(18, Math.min(82, centerX));
+            const clampedY = Math.max(4, topY - 8);
+
+            noteDiv.style.left = `${clampedX}%`;
+            noteDiv.style.top = `${clampedY}%`;
+            noteDiv.style.transform = `translate(-50%, -100%) rotate(${rot}deg)`;
+            noteDiv.innerHTML = `
+                <div class="w-8 h-2.5 bg-white/60 border border-[#2b2523]/30 mx-auto -mt-3.5 mb-1 rounded-sm"></div>
+                <span>${noteText}</span>
+            `;
+
+            floatingNotesLayer.appendChild(noteDiv);
+
+            // Fade out after 3.4 seconds
+            setTimeout(() => {
+                if (noteDiv.parentNode) {
+                    noteDiv.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+                    noteDiv.style.opacity = '0';
+                    noteDiv.style.transform = `translate(-50%, -125%) scale(0.9)`;
+                    setTimeout(() => noteDiv.remove(), 350);
+                }
+            }, 3400);
+        }
+
+        // Attach click listeners to each tulip
+        tulipElements.forEach((tulip, idx) => {
+            tulip.addEventListener('click', (e) => {
+                e.stopPropagation();
+                triggerTulipInteraction(tulip, idx);
+            });
+        });
+
+        // Easter Egg Roblox Brick click
+        document.getElementById('easter-egg-brick').addEventListener('click', () => {
+            playSketchPopSound(1.6);
+            speechPill.textContent = `🧱 "a guy who usually ask to play roblox" says: Hop on Roblox later! 🎮`;
+            burstSketchConfetti(35);
+        });
+
+        // Gift Tag click
+        document.getElementById('bouquet-gift-tag').addEventListener('click', () => {
+            playSketchPopSound(1.2);
+            speechPill.textContent = `🏷️ Signed: from "a guy who usually ask to play roblox"`;
+            burstSketchConfetti(30);
+        });
+
+        // --- Button 1: Shake Bouquet & Confetti ---
+        document.getElementById('btn-shake').addEventListener('click', () => {
+            mainBouquetGroup.classList.remove('sway-slow');
+            mainBouquetGroup.classList.remove('bouquet-shaking');
+            void mainBouquetGroup.offsetWidth;
+            mainBouquetGroup.classList.add('bouquet-shaking');
+
+            playSketchPopSound(1.1);
+            setTimeout(() => playSketchPopSound(1.4), 120);
+            burstSketchConfetti(65);
+
+            setTimeout(() => {
+                mainBouquetGroup.classList.remove('bouquet-shaking');
+                mainBouquetGroup.classList.add('sway-slow');
+            }, 700);
+        });
+
+        // --- Button 2: Pop Random Tulip Note ---
+        let lastRandomIdx = -1;
+        document.getElementById('btn-bloom-all').addEventListener('click', () => {
+            let randomIdx;
+            do {
+                randomIdx = Math.floor(Math.random() * tulipElements.length);
+            } while (randomIdx === lastRandomIdx && tulipElements.length > 1);
+            lastRandomIdx = randomIdx;
+
+            triggerTulipInteraction(tulipElements[randomIdx], randomIdx);
+        });
+
+        // --- Button 3: Toggle Paper Wrapper Style ---
+        const wrapStyles = [
+            { name: 'Kraft Sketch', back: '#d2ad84', left: '#e6c79c', right: '#dfbe93' },
+            { name: 'Newsprint Doodle', back: '#d6cbb9', left: 'url(#newsprint-pattern)', right: 'url(#newsprint-pattern)' },
+            { name: 'Notebook Grid', back: '#cbd5e1', left: 'url(#grid-wrap-pattern)', right: 'url(#grid-wrap-pattern)' },
+            { name: 'Pastel Lavender', back: '#c4b5fd', left: '#ddd6fe', right: '#d8b4fe' }
+        ];
+        let currentWrapIdx = 0;
+
+        document.getElementById('btn-wrap-style').addEventListener('click', () => {
+            currentWrapIdx = (currentWrapIdx + 1) % wrapStyles.length;
+            const style = wrapStyles[currentWrapIdx];
+            document.getElementById('wrapper-back').setAttribute('fill', style.back);
+            document.getElementById('wrapper-front-left').setAttribute('fill', style.left);
+            document.getElementById('wrapper-front-right').setAttribute('fill', style.right);
+            document.getElementById('wrap-label').textContent = `Paper: ${style.name}`;
+            playSketchPopSound(1.3);
+        });
+
+        // --- Button 4: Remix Tulip Colors (Warm & Friendly Palettes) ---
+        const tulipPalettes = [
+            ['#fde047', '#eab308', '#facc15', '#f59e0b'], // Sunny Yellow
+            ['#fda4af', '#f43f5e', '#fb7185', '#e11d48'], // Coral Pink
+            ['#d8b4fe', '#a855f7', '#c084fc', '#9333ea'], // Lavender Purple
+            ['#fdba74', '#f97316', '#fb923c', '#ea580c'], // Tangerine Orange
+            ['#bae6fd', '#38bdf8', '#7dd3fc', '#0284c7'], // Sky Blue
+            ['#f9a8d4', '#ec4899', '#f472b6', '#db2777'], // Bubblegum Pink
+            ['#fde68a', '#f59e0b', '#fbbf24', '#d97706'], // Marigold Gold
+            ['#bbf7d0', '#4ade80', '#86efac', '#16a34a'], // Minty Lime Tulip
+            ['#fecdd3', '#fb7185', '#fda4af', '#f43f5e']  // Peach Blush
+        ];
+
+        document.getElementById('btn-color-shuffle').addEventListener('click', () => {
+            playSketchPopSound(1.45);
+            tulipElements.forEach((tulip, idx) => {
+                const paths = tulip.querySelectorAll('path');
+                const pal = tulipPalettes[Math.floor(Math.random() * tulipPalettes.length)];
+                // Update offset blob and petals while keeping paper backing & ink lines intact
+                if (paths.length >= 6) {
+                    paths[1].setAttribute('fill', pal[2]); // Offset sketch blob
+                    paths[2].setAttribute('fill', pal[0]); // Center petal
+                    paths[3].setAttribute('fill', pal[1]); // Left petal
+                    paths[4].setAttribute('fill', pal[2]); // Right petal
+                    paths[5].setAttribute('fill', pal[3]); // Cup base
+                }
+                tulip.classList.remove('tulip-popping');
+                void tulip.offsetWidth;
+                setTimeout(() => tulip.classList.add('tulip-popping'), idx * 45);
+            });
+        });
+
+        // --- 2D Sketchy Paper Confetti Canvas Engine ---
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationFrameId = null;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const confettiPalette = ['#facc15', '#fb7185', '#c084fc', '#38bdf8', '#fb923c', '#4ade80', '#f472b6'];
+
+        function burstSketchConfetti(count = 50) {
+            const originX = window.innerWidth / 2;
+            const originY = window.innerHeight * 0.45;
+
+            for (let i = 0; i < count; i++) {
+                const angle = (Math.random() * Math.PI * 2);
+                const speed = 4 + Math.random() * 11;
+                const shapes = ['paper-rect', 'star', 'tulip-petal', 'block'];
+                particles.push({
+                    x: originX + (Math.random() - 0.5) * 120,
+                    y: originY + (Math.random() - 0.5) * 80,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 5,
+                    size: 8 + Math.random() * 8,
+                    color: confettiPalette[Math.floor(Math.random() * confettiPalette.length)],
+                    rotation: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.18,
+                    shape: shapes[Math.floor(Math.random() * shapes.length)],
+                    opacity: 1
+                });
+            }
+
+            if (!animationFrameId) {
+                animateConfetti();
+            }
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.28; // Gravity
+                p.vx *= 0.985; // Air resistance
+                p.rotation += p.rotSpeed;
+
+                if (p.y > canvas.height + 40) {
+                    particles.splice(i, 1);
+                    continue;
+                }
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation);
+                ctx.fillStyle = p.color;
+                ctx.strokeStyle = '#2b2523';
+                ctx.lineWidth = 1.8;
+
+                if (p.shape === 'paper-rect') {
+                    ctx.beginPath();
+                    ctx.rect(-p.size / 2, -p.size / 3, p.size, p.size * 0.66);
+                    ctx.fill();
+                    ctx.stroke();
+                } else if (p.shape === 'block') {
+                    // Little Roblox-style stud brick confetti
+                    ctx.beginPath();
+                    ctx.rect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
+                    ctx.fill();
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.rect(-p.size / 4, -p.size / 2 - 3, p.size / 2, 3);
+                    ctx.fill();
+                    ctx.stroke();
+                } else if (p.shape === 'tulip-petal') {
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, p.size * 0.45, p.size * 0.7, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.stroke();
+                } else {
+                    // Sketchy circle dot
+                    ctx.beginPath();
+                    ctx.arc(0, 0, p.size * 0.4, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.stroke();
+                }
+
+                ctx.restore();
+            }
+
+            if (particles.length > 0) {
+                animationFrameId = requestAnimationFrame(animateConfetti);
+            } else {
+                animationFrameId = null;
+            }
+        }
+
+        // Initial welcome pop on load
+        window.onload = function () {
+            setTimeout(() => {
+                burstSketchConfetti(38);
+                triggerTulipInteraction(tulipElements[0], 0);
+            }, 450);
+        };
+    </script>
+</body>
+</html>
